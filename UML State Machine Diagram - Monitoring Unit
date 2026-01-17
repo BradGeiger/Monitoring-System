@@ -1,0 +1,139 @@
+
+---
+
+# **UML STATE MACHINE DIAGRAM — Monitoring Unit (MU)**  
+**Entity Modeled:** *MonitoringUnit*
+
+```
+                                ┌──────────────────┐
+                                │      Initial     │
+                                └─────────┬────────┘
+                                          │
+                                          ▼
+                         ┌──────────────────────────────────┐
+                         │     Initialization / Setup       │
+                         │  - Load thresholds               │
+                         │  - Load metadata                 │
+                         │  - Prepare data history store    │
+                         └─────────┬────────────────────────┘
+                                   │
+                                   ▼
+                     ┌──────────────────────────────────────────┐
+                     │           Idle / Waiting State            │
+                     │  - Await incoming data                    │
+                     │  - Maintain baseline                      │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               │ [New data arrives]
+                               ▼
+               ┌────────────────────────────────────────────────────┐
+               │                Data Intake State                    │
+               │  - Receive data                                     │
+               │  - Validate format                                  │
+               │  - Timestamp & classify                             │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+        ┌──────────────────────────────────────────────────────────────┐
+        │                Data Storage & Context Update                  │
+        │  - Append to history                                          │
+        │  - Update contextual metadata                                 │
+        │  - Refresh baselines                                          │
+        └─────────┬────────────────────────────────────────────────────┘
+                  │
+                  ▼
+     ┌──────────────────────────────────────────────────────────────┐
+     │      Provide Data to Assigned Virtual Software Agent          │
+     │  - Stream real-time data                                      │
+     │  - Provide historical context                                 │
+     │  - Provide metadata                                            │
+     └─────────┬────────────────────────────────────────────────────┘
+               │
+               ▼
+     ┌──────────────────────────────────────────────────────────────┐
+     │          Await Agent Feedback / Analysis Results              │
+     │  - Monitor agent requests                                     │
+     │  - Prepare for potential updates                              │
+     └─────────┬────────────────────────────────────────────────────┘
+               │
+               ├───────────────[Agent requests additional context]───────────────┐
+               │                                                                   │
+               ▼                                                                   │
+     ┌────────────────────────────────────────────┐                                │
+     │      Provide Additional Context / History   │                                │
+     └─────────┬──────────────────────────────────┘                                │
+               │                                                                   │
+               │ [Return to Await Agent Feedback]                                  │
+               └────────────────────────────────────────────────────────────────────┘
+
+
+               │
+               └───────────────[System-wide update received]──────────────────────┐
+                                                                                   │
+                                                                                   ▼
+                     ┌────────────────────────────────────────────┐
+                     │      Apply Lessons-Learned Updates          │
+                     │  - Update thresholds                        │
+                     │  - Update metadata                          │
+                     │  - Update baseline models                   │
+                     └─────────┬───────────────────────────────────┘
+                               │
+                               ▼
+                     ┌────────────────────────────────────────────┐
+                     │       Recalibration / Reconfiguration       │
+                     │  - Recompute baselines                      │
+                     │  - Rebuild context                          │
+                     │  - Reset internal state if needed           │
+                     └─────────┬───────────────────────────────────┘
+                               │
+                               ▼
+                     ┌────────────────────────────────────────────┐
+                     │         Return to Idle / Waiting            │
+                     └────────────────────────────────────────────┘
+```
+
+---
+
+# **STATE DESCRIPTIONS**
+
+### **Initialization / Setup**
+Loads thresholds, metadata, and prepares internal structures.
+
+### **Idle / Waiting**
+The MU is ready but not currently processing new data.
+
+### **Data Intake**
+Incoming data is received, validated, and classified.
+
+### **Data Storage & Context Update**
+Data is appended to history, metadata is updated, and baselines are refreshed.
+
+### **Provide Data to VSA**
+The MU streams data and context to the assigned Virtual Software Agent.
+
+### **Await Agent Feedback**
+The MU waits for agent requests or analysis results.
+
+### **Provide Additional Context**
+If the agent needs more history or metadata, the MU supplies it.
+
+### **Apply Lessons-Learned Updates**
+The MU receives system-wide updates (new thresholds, rules, baselines).
+
+### **Recalibration / Reconfiguration**
+The MU adjusts its internal state to reflect new knowledge.
+
+### **Return to Idle**
+The MU resumes normal monitoring.
+
+---
+
+# **What This Diagram Captures**
+
+- The **full lifecycle** of a Monitoring Unit  
+- How it processes data, updates context, and interacts with agents  
+- How it incorporates system-wide improvements  
+- How it maintains baselines and metadata  
+- A complete behavioral model suitable for architecture docs or UML tools  
+
+---
