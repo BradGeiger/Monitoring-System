@@ -1,0 +1,556 @@
+
+TITLE OF THE INVENTION
+
+Virtual Monitoring Center with Hierarchical Software Agents, Entity‑Specific Monitoring Units, and Continuous Organizational Learning Engine
+
+---
+
+FIELD OF THE INVENTION
+
+The invention relates to automated monitoring systems, virtualized operations centers, and agent‑based analytic architectures. More specifically, the invention concerns a virtual monitoring center comprising monitoring units, virtual software agents, hierarchical supervisory structures, and a continuous improvement engine for analyzing data associated with monitored entities.
+
+---
+
+BACKGROUND OF THE INVENTION
+
+Monitoring systems are widely used across industries to track the status, behavior, and performance of various entities, including devices, processes, individuals, networks, and physical environments. Traditional monitoring architectures typically rely on centralized dashboards, static rule sets, or human operators who manually interpret incoming data streams. These systems suffer from several limitations, including limited scalability, inconsistent analysis, lack of individualized monitoring, weak feedback loops, high false‑positive and false‑negative rates, and minimal organizational learning.
+
+Existing solutions do not provide a virtualized workforce of software agents, each assigned to a specific monitored entity and equipped with a dedicated analytic environment. Nor do they incorporate a hierarchical supervisory structure capable of validating escalations, providing feedback, and generating insights. Furthermore, current systems lack a centralized lessons‑learned repository that continuously updates rules, thresholds, and models across the entire monitoring ecosystem.
+
+There is therefore a need for a scalable, autonomous, hierarchical monitoring architecture capable of individualized analysis, structured escalation, and continuous improvement across an entire organization.
+
+---
+
+SUMMARY OF THE INVENTION
+
+As shown in FIG. 1, the invention provides a Virtual Monitoring Center (VMC) comprising a distributed, software‑defined architecture for monitoring a plurality of entities. The VMC includes Monitoring Units configured to receive, normalize, validate, contextualize, and store incoming data; Virtual Software Agents assigned to Monitoring Units and operating at virtual workstations equipped with analytic tools, dashboards, communication channels, and historical data views; a Decision and Action Engine configured to evaluate analysis results, compute severity scores, determine recommended actions, and route escalations; a hierarchical supervisory structure comprising Supervisory Agents configured to validate escalated events, approve or reject actions, provide feedback, and generate insights; and a Lessons‑Learned Repository configured to store supervisory insights, generate rule updates, and distribute updated rules, thresholds, and models to Monitoring Units and Virtual Software Agents.
+
+Turning to FIG. 2, each Monitoring Unit receives raw data streams, performs normalization and validation, contextualizes the data, computes baselines, evaluates thresholds, and forwards processed data to its assigned Virtual Software Agent. As shown in FIG. 3, each Virtual Software Agent operates at a virtual workstation comprising real‑time data feeds, historical logs, analytic tools, visualization components, alert queues, and communication interfaces.
+
+As illustrated in FIG. 4, the Decision and Action Engine evaluates analysis results, computes severity scores, determines recommended actions, and routes escalations to the supervisory hierarchy. As shown in FIG. 5, the supervisory hierarchy comprises multiple tiers of Supervisory Agents who validate escalations, provide feedback, and generate insights. As illustrated in FIG. 6, the Lessons‑Learned Repository stores insights, generates rule updates, and distributes updated rules, thresholds, and models to Monitoring Units and Virtual Software Agents.
+
+As shown in FIGS. 7–12, the system operates as a coordinated set of interacting components, each with defined states and transitions. As illustrated in FIGS. 13–18, the system includes a domain model, class structure, component architecture, and database schema. As shown in FIGS. 19–25, the system includes flowcharts describing data ingestion, Monitoring Unit processing, Virtual Software Agent analysis, Decision and Action Engine processing, supervisory review, Lessons‑Learned Repository processing, and the continuous improvement loop.
+
+---
+
+BRIEF DESCRIPTION OF THE DRAWINGS
+
+(Already integrated earlier — included here in full for continuity.)
+
+FIG. 1 — System architecture overview  
+FIG. 2 — Monitoring Unit processing pipeline  
+FIG. 3 — Virtual Software Agent workstation  
+FIG. 4 — Decision and Action Engine workflow  
+FIG. 5 — Supervisory hierarchy  
+FIG. 6 — Lessons‑Learned Repository  
+FIG. 7 — End‑to‑end sequence diagram  
+FIG. 8 — VSA state machine  
+FIG. 9 — Monitoring Unit state machine  
+FIG. 10 — Decision and Action Engine state machine  
+FIG. 11 — Supervisory Agent state machine  
+FIG. 12 — Virtual Monitoring Center state machine  
+FIG. 13 — Domain model diagram  
+FIG. 14 — UML class diagram  
+FIG. 15 — Component diagram  
+FIG. 16 — Detailed sequence diagram  
+FIG. 17 — Detailed VSA state machine  
+FIG. 18 — Database schema  
+FIG. 19 — Data ingestion flowchart  
+FIG. 20 — Monitoring Unit flowchart  
+FIG. 21 — VSA analysis flowchart  
+FIG. 22 — Decision and Action Engine flowchart  
+FIG. 23 — Supervisory review flowchart  
+FIG. 24 — Lessons‑Learned Repository flowchart  
+FIG. 25 — Continuous improvement loop
+
+---
+
+DETAILED DESCRIPTION OF THE INVENTION
+
+1. System Architecture
+
+As shown in FIG. 1, the Virtual Monitoring Center 100 comprises a distributed architecture including Monitoring Units 110, Virtual Software Agents 120, a Decision and Action Engine 130, Supervisory Agents 140, and a Lessons‑Learned Repository 150. The components may be implemented using microservices, virtual machines, containers, distributed computing clusters, or cloud‑native architectures. Communication among components may occur through message queues, event streams, REST APIs, or other communication protocols.
+
+---
+
+2. Monitoring Units
+
+2.1 Overview
+
+Turning to FIG. 2, each Monitoring Unit 110 corresponds to a monitored entity and is responsible for receiving, preprocessing, contextualizing, and storing data.
+
+2.2 Data Ingestion
+
+As shown in FIG. 19, the Monitoring Unit 110 receives Data Streams 180 comprising vectors:
+
+\[
+\mathbf{x}(t) = [x1(t), x2(t), \ldots, x_n(t)]
+\]
+
+2.3 Data Normalization
+
+Turning again to FIG. 2, normalization may include z‑score normalization, min‑max scaling, or exponential moving averages.
+
+2.4 Data Validation
+
+As illustrated in FIG. 20, validation includes timestamp alignment, schema verification, and integrity checks.
+
+2.5 Contextualization
+
+Turning to FIG. 2, contextualization includes metadata augmentation and derived indicators.
+
+2.6 Baseline Modeling
+
+As shown in FIG. 19, baseline vectors may be computed using:
+
+\[
+\mathbf{B}(t) = \alpha \mathbf{x}(t) + (1 - \alpha) \mathbf{B}(t-1)
+\]
+
+2.7 Threshold Evaluation
+
+Turning again to FIG. 2, thresholds 210 may be static, dynamic, probabilistic, or learned.
+
+---
+
+3. Virtual Software Agents
+
+3.1 Overview
+
+As illustrated in FIG. 3, each Virtual Software Agent 120 operates at a virtual workstation comprising analytic tools, dashboards, communication channels, and historical data views.
+
+3.2 Analysis Pipeline
+
+Turning to FIG. 21, the Virtual Software Agent 120 performs rule‑based evaluation, statistical analysis, predictive modeling, anomaly detection, severity scoring, and escalation determination.
+
+3.3 Virtual Workstation
+
+As shown in FIG. 3, the virtual workstation includes real‑time feeds, logs, visualization tools, analytic modules, alert queues, and communication interfaces.
+
+---
+
+4. Anomaly Detection Models
+
+As shown in FIG. 21, the Virtual Software Agent 120 computes anomaly metrics using one or more analytic models. These models may include distance‑based metrics, statistical deviation metrics, composite scoring functions, or alternative mathematical embodiments. The anomaly detection process may be implemented using rule‑based logic, machine learning models, or hybrid approaches.
+
+- distance‑based metrics  
+- statistical deviation metrics  
+- composite scoring functions  
+- hybrid anomaly detection  
+
+---
+
+4.1 Distance‑Based Models
+
+Turning to FIG. 21, the Virtual Software Agent 120 may compute a Euclidean distance anomaly score:
+
+\[
+Ad(t) = \left\| \mathbf{x}(t) - \mathbf{B}(t) \right\|2
+\]
+
+The Virtual Software Agent 120 may also compute a Mahalanobis distance anomaly score:
+
+\[
+A_m(t) = \sqrt{(\mathbf{x}(t) - \boldsymbol{\mu})^\top \Sigma^{-1} (\mathbf{x}(t) - \boldsymbol{\mu})}
+\]
+
+- euclidean distance  
+- mahalanobis distance  
+
+---
+
+4.2 Statistical Deviation
+
+As illustrated in FIG. 21, the Virtual Software Agent 120 may compute a statistical deviation anomaly score:
+
+\[
+A_s(t) = \frac{|x(t) - B(t)|}{\sigma}
+\]
+
+This score may be computed per attribute or aggregated across attributes.
+
+- statistical deviation  
+- attribute‑level scoring  
+
+---
+
+4.3 Composite Anomaly Score
+
+Turning again to FIG. 21, the Virtual Software Agent 120 may compute a composite anomaly score:
+
+\[
+A(t) = wd Ad(t) + wm Am(t) + ws As(t)
+\]
+
+Weights may be static, dynamic, or learned.
+
+- weighted anomaly scoring  
+- dynamic weighting  
+
+---
+
+4.4 Alternative Mathematical Embodiments
+
+As shown in FIGS. 8, 17, and 13, the system may employ alternative anomaly detection models, including:
+
+- bayesian inference  
+- hidden markov models  
+- kalman filters  
+- fuzzy logic  
+- graph‑based models  
+- reinforcement learning  
+- ensemble models  
+- information‑theoretic measures  
+- wavelet analysis  
+- gaussian processes  
+- LSTM networks  
+
+These embodiments may be used independently or in combination.
+
+---
+
+5. Predictive Modeling
+
+As illustrated in FIG. 21, the Virtual Software Agent 120 may forecast future values using linear forecasting, autoregressive models, or neural networks. Predictive modeling may be used to anticipate future anomalies, compute risk scores, or adjust thresholds.
+
+- linear forecasting  
+- autoregressive models  
+- neural network forecasting  
+
+---
+
+5.1 Linear Forecasting
+
+Turning to FIG. 21, the Virtual Software Agent 120 may compute a linear forecast:
+
+\[
+\hat{x}(t+1) = \beta0 + \sum{i=1}^{k} \beta_i x(t-i)
+\]
+
+- linear prediction  
+- time‑series regression  
+
+---
+
+5.2 ARIMA Models
+
+As shown in FIG. 21, the Virtual Software Agent 120 may employ ARIMA models:
+
+\[
+\phi(B)(1 - B)^d x(t) = \theta(B)\epsilon(t)
+\]
+
+- ARIMA modeling  
+- autoregressive differencing  
+
+---
+
+5.3 Neural Networks
+
+Turning again to FIG. 21, the Virtual Software Agent 120 may employ neural networks:
+
+\[
+\hat{\mathbf{x}}(t+1) = f(W2 \sigma(W1 \mathbf{x}(t) + b1) + b2)
+\]
+
+Neural networks may include feedforward networks, recurrent networks, or long short‑term memory networks.
+
+- neural network forecasting  
+- LSTM prediction  
+
+---
+
+6. Severity Scoring
+
+As illustrated in FIG. 22, the Decision and Action Engine 130 computes severity scores based on anomaly metrics, predicted risk, contextual modifiers, or combinations thereof.
+
+- severity scoring  
+- risk integration  
+
+---
+
+6.1 Weighted Severity
+
+Turning to FIG. 22, the Decision and Action Engine 130 may compute a weighted severity score:
+
+\[
+S(t) = \sum{i=1}^{n} wi A_i(t)
+\]
+
+- weighted severity  
+- multi‑factor scoring  
+
+---
+
+6.2 Logistic Mapping
+
+As shown in FIG. 22, the Decision and Action Engine 130 may apply a logistic mapping:
+
+\[
+L(t) = \frac{1}{1 + e^{-k(S(t) - \theta)}}
+\]
+
+- logistic mapping  
+- nonlinear scaling  
+
+---
+
+6.3 Multi‑Factor Severity
+
+Turning again to FIG. 22, the Decision and Action Engine 130 may compute a multi‑factor severity score:
+
+\[
+S_{\text{multi}}(t) = \alpha A(t) + \beta R(t) + \gamma C(t)
+\]
+
+Where:
+
+- anomaly score  
+- predicted risk  
+- contextual modifier  
+
+---
+
+7. Escalation Logic
+
+As illustrated in FIG. 22, the Decision and Action Engine 130 determines whether an event should be escalated based on severity scores and escalation thresholds.
+
+- escalation thresholds  
+- multi‑level escalation  
+
+---
+
+7.1 Threshold‑Based Escalation
+
+Turning to FIG. 22, escalation occurs when:
+
+\[
+S(t) \geq T_e
+\]
+
+- threshold‑based escalation  
+
+---
+
+7.2 Multi‑Level Escalation
+
+As shown in FIG. 22, the Decision and Action Engine 130 may determine escalation levels using:
+
+\[
+\text{Level}(t) =
+\begin{cases}
+0 & S(t) < T_1 \\
+1 & T1 \leq S(t) < T2 \\
+2 & T2 \leq S(t) < T3 \\
+3 & S(t) \geq T_3
+\end{cases}
+\]
+
+- tiered escalation  
+- severity bands  
+
+---
+
+7.3 Escalation Routing
+
+Turning again to FIG. 22, escalations are routed to Supervisory Agents 140 for validation, approval, or feedback.
+
+- supervisory routing  
+- escalation validation  
+
+---
+
+8. Supervisory Agents
+
+As shown in FIG. 5, the supervisory hierarchy comprises multiple tiers of Supervisory Agents 140 who validate escalations, approve or reject recommended actions, provide feedback to Virtual Software Agents 120, and generate insights for organizational learning. Supervisory Agents may operate in parallel or in a tiered escalation structure, with higher tiers handling more complex or severe events.
+
+- tiered supervisory structure  
+- escalation validation  
+- feedback generation  
+- insight creation  
+
+---
+
+8.1 Supervisory Review Process
+
+Turning to FIG. 23, the supervisory review process begins when a Supervisory Agent 140 receives an escalated report from the Decision and Action Engine 130. The Supervisory Agent evaluates the findings, determines whether the recommended action is appropriate, and provides corrective feedback if necessary.
+
+- report evaluation  
+- action approval  
+- corrective feedback  
+
+---
+
+8.2 Insight Generation
+
+As illustrated in FIG. 11, Supervisory Agents 140 generate insights based on recurring anomalies, false positives, false negatives, or systemic patterns. These insights may include recommendations for adjusting thresholds 210, modifying rules, updating models, or refining escalation logic.
+
+- pattern identification  
+- systemic insight generation  
+
+---
+
+8.3 Insight Submission
+
+Turning again to FIG. 23, Supervisory Agents 140 submit insights to the Lessons‑Learned Repository 150, which stores and processes them for system‑wide updates.
+
+- insight submission  
+- knowledge transfer  
+
+---
+
+9. Lessons‑Learned Repository
+
+As shown in FIG. 6, the Lessons‑Learned Repository 150 stores supervisory insights, generates Rule Updates 220, and distributes updated rules, thresholds 210, and models to Monitoring Units 110 and Virtual Software Agents 120. The repository may include modules for insight storage, rule update generation, model update generation, and update distribution.
+
+- insight storage  
+- rule update generation  
+- model update generation  
+- update distribution  
+
+---
+
+9.1 Insight Storage
+
+Turning to FIG. 24, the Lessons‑Learned Repository 150 stores insights received from Supervisory Agents 140. Insights may be indexed by category, severity, frequency, or affected entity type.
+
+- insight indexing  
+- categorical storage  
+
+---
+
+9.2 Rule Update Generation
+
+As illustrated in FIG. 24, the Lessons‑Learned Repository 150 generates Rule Updates 220 based on accumulated insights. Rule updates may include modifications to thresholds 210, changes to anomaly detection rules, or adjustments to predictive models.
+
+- rule synthesis  
+- threshold refinement  
+
+---
+
+9.3 Model Update Generation
+
+Turning again to FIG. 24, the Lessons‑Learned Repository 150 may generate model updates for baseline models 190, predictive models, or anomaly detection models. Model updates may be distributed to Monitoring Units 110 and Virtual Software Agents 120.
+
+- model retraining  
+- baseline recalibration  
+
+---
+
+9.4 Update Distribution
+
+As shown in FIG. 6, the Lessons‑Learned Repository 150 distributes Rule Updates 220 and model updates to Monitoring Units 110 and Virtual Software Agents 120. Updates may be distributed in real time or in scheduled intervals.
+
+- real‑time update distribution  
+- scheduled update propagation  
+
+---
+
+10. Threshold Adaptation
+
+Turning to FIG. 24, the Lessons‑Learned Repository 150 may update thresholds 210 based on supervisory insights, model outputs, or observed drift in baseline values. Threshold adaptation may include drift‑adjusted thresholds, confidence‑weighted thresholds, or hybrid approaches.
+
+- drift‑adjusted thresholds  
+- confidence‑weighted thresholds  
+
+---
+
+10.1 Drift‑Adjusted Thresholds
+
+As illustrated in FIG. 24, thresholds may be updated using:
+
+\[
+T(t+1) = T(t) + \eta (B(t) - B(t-1))
+\]
+
+- baseline drift compensation  
+
+---
+
+10.2 Confidence‑Weighted Thresholds
+
+Turning again to FIG. 24, thresholds may be adjusted based on confidence scores:
+
+\[
+T'(t) = T(t) + \lambda (1 - C(t))
+\]
+
+- confidence‑based adjustment  
+
+---
+
+11. System‑of‑Systems Embodiments
+
+As shown in FIG. 15, the invention may be deployed as a system‑of‑systems comprising multiple Virtual Monitoring Centers 100 operating cooperatively. Components may include an Inter‑Center Coordination Layer 160 and a Global Knowledge Integration Layer 170.
+
+- federated monitoring  
+- cross‑center coordination  
+- global knowledge integration  
+
+---
+
+11.1 Inter‑Center Coordination
+
+Turning to FIG. 15, the Inter‑Center Coordination Layer 160 enables Virtual Monitoring Centers 100 to exchange analysis results, alerts, and insights. Coordination may include cross‑center anomaly correlation, shared escalation handling, or distributed load balancing.
+
+- cross‑center anomaly correlation  
+- shared escalation handling  
+
+---
+
+11.2 Global Knowledge Integration
+
+As illustrated in FIG. 6, the Global Knowledge Integration Layer 170 aggregates insights from multiple Virtual Monitoring Centers 100 and distributes global Rule Updates 220.
+
+- global rule propagation  
+- multi‑center learning  
+
+---
+
+12. Continuous Improvement Loop
+
+Turning to FIG. 25, the system performs continuous improvement by collecting insights, generating Rule Updates 220, updating thresholds 210, updating models, distributing updates, and improving monitoring accuracy. The loop may operate in real time or in scheduled intervals.
+
+- continuous improvement  
+- adaptive learning  
+
+---
+
+12.1 Stability Constraint
+
+As shown in FIG. 25, threshold updates may be constrained by:
+
+\[
+|T(t+1) - T(t)| \leq \epsilon
+\]
+
+This ensures system stability and prevents oscillation.
+
+- stability enforcement  
+
+---
+
+12.2 Loop Execution
+
+Turning again to FIG. 25, the continuous improvement loop may be executed per entity, per cluster, or globally.
+
+- entity‑level improvement  
+- global improvement cycles  
+
+---
+
+CLAIMS
+
+The invention is claimed as follows.
+
+---
+
+1. System Claims
+(As shown in FIGS. 1–6, 13–15, and 21–25, the system architecture includes Monitoring Units 110, Virtual Software Agents 120, a Decision and Action Engine 130, Supervisory Agents 140, and a Lessons‑Learned Repository 150.)
+
+1. A monitoring system comprising:  
+a plurality of Monitoring Units configured to receive, normalize, validate, contextualize, and store data associated with respective monitored entities;  
+a plurality of Virtual Software Agents, each Virtual Software Agent assigned to a Monitoring Unit and configured to analyze processed data at a virtual workstation comprising analytic tools, dashboards, communication channels, and historical data views;  
+a Decision and Action Engine configured to evaluate analysis results generated by the Virtual Software Agents, compute severity scores, determine recommended actions, and route escalations;  
+a hierarchical supervisory structure comprising one or more Supervisory Agents configured to validate escalated events, approve or reject actions, provide feedback, and generate insights; and  
+a Lessons‑Learned Repository configured to store supervisory insights, generate rule updates, and distribute update
