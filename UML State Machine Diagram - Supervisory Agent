@@ -1,0 +1,141 @@
+
+---
+
+# **UML STATE MACHINE DIAGRAM — Supervisory Agent**  
+**Entity Modeled:** *SupervisoryAgent*
+
+```
+                                ┌──────────────────┐
+                                │      Initial     │
+                                └─────────┬────────┘
+                                          │
+                                          ▼
+                         ┌──────────────────────────────────┐
+                         │      Idle / Standby State        │
+                         │  - Await incoming reports         │
+                         │  - Monitor agent activity         │
+                         └─────────┬────────────────────────┘
+                                   │
+                                   │ [Alert or report received]
+                                   ▼
+                     ┌──────────────────────────────────────────┐
+                     │          Report Intake State              │
+                     │  - Retrieve report                        │
+                     │  - Identify source agent                  │
+                     │  - Classify severity                      │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               ▼
+               ┌────────────────────────────────────────────────────┐
+               │                Validation State                     │
+               │  - Check accuracy                                   │
+               │  - Confirm anomaly legitimacy                       │
+               │  - Compare with historical patterns                 │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ├───────────────[Report invalid]───────────────┐
+                         │                                                │
+                         ▼                                                │
+        ┌────────────────────────────────────────────┐                   │
+        │         Reject Report / Send Feedback       │                   │
+        │  - Notify agent of incorrect assessment     │                   │
+        │  - Provide corrective guidance              │                   │
+        └─────────┬──────────────────────────────────┘                   │
+                  │                                                      │
+                  │ [Return to Idle]                                     │
+                  └──────────────────────────────────────────────────────┘
+
+
+                         │
+                         └───────────────[Report valid]──────────────────┐
+                                                                          │
+                                                                          ▼
+                     ┌──────────────────────────────────────────┐
+                     │          Action Decision State            │
+                     │  - Approve recommended action             │
+                     │  - Modify action                          │
+                     │  - Trigger additional investigation       │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               ▼
+               ┌────────────────────────────────────────────────────┐
+               │             Escalation Handling State               │
+               │  - Notify higher-level supervisors (if needed)     │
+               │  - Coordinate multi-agent response                 │
+               │  - Authorize automated or manual interventions     │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+               ┌────────────────────────────────────────────────────┐
+               │           Insight Extraction State                  │
+               │  - Identify root causes                             │
+               │  - Extract lessons learned                          │
+               │  - Formulate rule/model updates                     │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+               ┌────────────────────────────────────────────────────┐
+               │     Submit Insight to Lessons-Learned Repository    │
+               │  - Store validated insight                          │
+               │  - Propose rule updates                             │
+               │  - Propose threshold adjustments                    │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+               ┌────────────────────────────────────────────────────┐
+               │      Await System-Wide Update Distribution          │
+               │  - Receive updated rules/models                     │
+               │  - Confirm propagation to agents                    │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+               ┌────────────────────────────────────────────────────┐
+               │               Return to Idle / Standby              │
+               └────────────────────────────────────────────────────┘
+```
+
+---
+
+# **STATE DESCRIPTIONS**
+
+### **Idle / Standby**
+The supervisory agent is waiting for incoming alerts or reports.
+
+### **Report Intake**
+The supervisor receives a report, identifies its source, and classifies its severity.
+
+### **Validation**
+The supervisor determines whether the report is accurate and legitimate.
+
+### **Reject Report / Send Feedback**
+If the report is incorrect, the supervisor provides corrective guidance to the agent.
+
+### **Action Decision**
+If the report is valid, the supervisor decides what action should be taken.
+
+### **Escalation Handling**
+The supervisor may escalate the issue to higher levels or coordinate a broader response.
+
+### **Insight Extraction**
+The supervisor identifies lessons learned and potential improvements.
+
+### **Submit Insight**
+Insights are stored in the lessons‑learned repository for system‑wide improvement.
+
+### **Await Update Distribution**
+The supervisor waits for updated rules or models to be propagated across the system.
+
+### **Return to Idle**
+The cycle resets.
+
+---
+
+# **What This Diagram Captures**
+
+- The **full behavioral lifecycle** of supervisory agents  
+- How they validate, approve, reject, or escalate agent reports  
+- How they contribute to the **organizational learning loop**  
+- How they interact with the lessons‑learned repository  
+- How they maintain system‑wide quality and consistency  
+
+---
