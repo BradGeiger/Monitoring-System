@@ -1,0 +1,221 @@
+
+---
+
+# **📘 DATABASE SCHEMA — Virtual Monitoring System**
+
+---
+
+# **1. Core Entities**
+
+## **Table: virtual_monitoring_center**
+```
+vmc_id            PK
+name
+created_at
+updated_at
+```
+
+---
+
+# **2. Monitoring Units**
+
+## **Table: monitoring_unit**
+```
+mu_id             PK
+vmc_id            FK → virtual_monitoring_center.vmc_id
+target_type       (ENUM: person, place, thing, system, process)
+target_identifier
+metadata_json     (JSON)
+baseline_json     (JSON)
+created_at
+updated_at
+```
+
+## **Table: mu_data_history**
+```
+history_id        PK
+mu_id             FK → monitoring_unit.mu_id
+timestamp
+raw_data_json     (JSON)
+processed_data_json (JSON)
+context_json      (JSON)
+```
+
+## **Table: mu_thresholds**
+```
+threshold_id      PK
+mu_id             FK → monitoring_unit.mu_id
+metric_name
+threshold_value
+comparison_operator (>, <, >=, <=, ==)
+created_at
+updated_at
+```
+
+---
+
+# **3. Virtual Software Agents**
+
+## **Table: virtual_software_agent**
+```
+vsa_id            PK
+vmc_id            FK → virtual_monitoring_center.vmc_id
+assigned_mu_id    FK → monitoring_unit.mu_id
+name
+status            (ENUM: idle, analyzing, waiting_feedback, offline)
+created_at
+updated_at
+```
+
+## **Table: vsa_knowledge_base**
+```
+kb_id             PK
+vsa_id            FK → virtual_software_agent.vsa_id
+rules_json        (JSON)
+models_json       (JSON)
+last_update
+```
+
+## **Table: vsa_activity_log**
+```
+log_id            PK
+vsa_id            FK → virtual_software_agent.vsa_id
+mu_id             FK → monitoring_unit.mu_id
+timestamp
+event_type        (analysis_start, analysis_end, anomaly_detected, report_generated)
+details_json      (JSON)
+```
+
+---
+
+# **4. Decision & Action Engine**
+
+## **Table: decision_event**
+```
+event_id          PK
+vsa_id            FK → virtual_software_agent.vsa_id
+mu_id             FK → monitoring_unit.mu_id
+timestamp
+raw_event_json    (JSON)
+severity_score    INT
+severity_level    (ENUM: low, medium, high, critical)
+status            (ENUM: pending, processed, escalated)
+```
+
+## **Table: recommended_action**
+```
+action_id         PK
+event_id          FK → decision_event.event_id
+action_type
+action_parameters_json (JSON)
+requires_supervisor   BOOLEAN
+created_at
+```
+
+## **Table: executed_action**
+```
+exec_id           PK
+action_id         FK → recommended_action.action_id
+executed_by       (ENUM: system, supervisor, agent)
+execution_timestamp
+result_json       (JSON)
+```
+
+---
+
+# **5. Reporting & Escalation**
+
+## **Table: report**
+```
+report_id         PK
+event_id          FK → decision_event.event_id
+vsa_id            FK → virtual_software_agent.vsa_id
+severity_level
+report_json       (JSON)
+created_at
+```
+
+## **Table: escalation_route**
+```
+route_id          PK
+report_id         FK → report.report_id
+supervisor_id     FK → supervisory_agent.supervisor_id
+escalation_level  INT
+timestamp
+status            (ENUM: pending, acknowledged, resolved)
+```
+
+---
+
+# **6. Supervisory Agents & Hierarchy**
+
+## **Table: supervisory_agent**
+```
+supervisor_id     PK
+vmc_id            FK → virtual_monitoring_center.vmc_id
+name
+role              (ENUM: supervisor, manager, director)
+permissions_json  (JSON)
+created_at
+updated_at
+```
+
+## **Table: hierarchy_relationship**
+```
+relationship_id   PK
+supervisor_id     FK → supervisory_agent.supervisor_id
+reports_to_id     FK → supervisory_agent.supervisor_id
+hierarchy_level   INT
+```
+
+---
+
+# **7. Lessons Learned Repository**
+
+## **Table: lessons_learned**
+```
+lesson_id         PK
+supervisor_id     FK → supervisory_agent.supervisor_id
+event_id          FK → decision_event.event_id
+insight_text
+insight_json      (JSON)
+created_at
+```
+
+## **Table: rule_update**
+```
+update_id         PK
+lesson_id         FK → lessons_learned.lesson_id
+target_type       (ENUM: vsa, mu, system)
+target_id         (nullable FK depending on type)
+update_json       (JSON)
+applied_timestamp
+```
+
+---
+
+# **8. System-Wide Updates Distribution**
+
+## **Table: update_distribution**
+```
+distribution_id   PK
+update_id         FK → rule_update.update_id
+distributed_to    (ENUM: vsa, mu)
+target_id
+timestamp
+status            (ENUM: pending, applied)
+```
+
+---
+
+# **📌 RELATIONSHIP SUMMARY**
+
+- **One VMC** → many **Monitoring Units**, many **VSAs**, many **Supervisors**
+- **One MU** → many **data history entries**, many **thresholds**
+- **One VSA** → one MU, one knowledge base, many activity logs
+- **One VSA** → many decision events → many recommended actions → optional executed actions
+- **One decision event** → one report → optional escalation
+- **Supervisors** form a hierarchy (self‑referencing table)
+- **Lessons learned** → generate **rule updates** → distributed to VSAs and MUs
+
+---
