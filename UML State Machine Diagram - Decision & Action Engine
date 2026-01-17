@@ -1,0 +1,169 @@
+
+---
+
+# **UML STATE MACHINE DIAGRAM — Decision & Action Engine**  
+**Entity Modeled:** *DecisionActionEngine*
+
+```
+                                ┌──────────────────┐
+                                │      Initial     │
+                                └─────────┬────────┘
+                                          │
+                                          ▼
+                         ┌──────────────────────────────────┐
+                         │     Idle / Waiting for Event     │
+                         │  - Await analysis results         │
+                         │  - Monitor agent activity         │
+                         └─────────┬────────────────────────┘
+                                   │
+                                   │ [Event received from VSA]
+                                   ▼
+                     ┌──────────────────────────────────────────┐
+                     │            Event Intake State             │
+                     │  - Parse event                            │
+                     │  - Validate structure                     │
+                     │  - Identify event type                    │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               ▼
+               ┌────────────────────────────────────────────────────┐
+               │               Severity Assessment State             │
+               │  - Evaluate severity model                          │
+               │  - Score impact                                     │
+               │  - Determine urgency                                │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ├───────────────[Severity = Low]───────────────┐
+                         │                                                │
+                         ▼                                                │
+        ┌────────────────────────────────────────────┐                   │
+        │         Routine Logging State               │                   │
+        │  - Log event                                │                   │
+        │  - Generate routine insight                 │                   │
+        └─────────┬──────────────────────────────────┘                   │
+                  │                                                      │
+                  │ [Return to Idle]                                     │
+                  └──────────────────────────────────────────────────────┘
+
+
+                         │
+                         └───────────────[Severity = Medium/High]────────┐
+                                                                          │
+                                                                          ▼
+                     ┌──────────────────────────────────────────┐
+                     │           Alert Generation State          │
+                     │  - Create alert package                   │
+                     │  - Attach severity score                  │
+                     │  - Add recommended actions                │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               ▼
+               ┌────────────────────────────────────────────────────┐
+               │             Action Recommendation State             │
+               │  - Determine possible interventions                 │
+               │  - Evaluate risk vs. benefit                       │
+               │  - Select recommended action set                   │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ▼
+               ┌────────────────────────────────────────────────────┐
+               │             Escalation Decision State               │
+               │  - Decide if supervisor involvement is needed       │
+               │  - Determine escalation level                       │
+               └─────────┬──────────────────────────────────────────┘
+                         │
+                         ├───────────────[Escalation required]──────────┐
+                         │                                               │
+                         ▼                                               │
+     ┌──────────────────────────────────────────────────────────────┐    │
+     │           Forward Alert to Reporting Layer                    │    │
+     │  - Package for supervisor                                     │    │
+     │  - Route based on severity                                    │    │
+     └─────────┬────────────────────────────────────────────────────┘    │
+               │                                                        │
+               ▼                                                        │
+     ┌──────────────────────────────────────────────────────────────┐    │
+     │            Await Supervisory Feedback State                   │    │
+     │  - Wait for approval or modification                          │    │
+     │  - Receive updated action plan                                │    │
+     └─────────┬────────────────────────────────────────────────────┘    │
+               │                                                        │
+               ▼                                                        │
+     ┌──────────────────────────────────────────────────────────────┐    │
+     │             Apply Supervisor-Approved Actions                 │    │
+     │  - Execute automated actions (if allowed)                     │    │
+     │  - Notify VSA of approved plan                                │    │
+     └─────────┬────────────────────────────────────────────────────┘    │
+               │                                                        │
+               │ [Return to Idle]                                      │
+               └────────────────────────────────────────────────────────┘
+
+
+                         │
+                         └───────────────[No escalation required]────────┐
+                                                                          │
+                                                                          ▼
+                     ┌──────────────────────────────────────────┐
+                     │        Execute Local Automated Action     │
+                     │  - Apply rule-based response              │
+                     │  - Notify VSA                             │
+                     └─────────┬────────────────────────────────┘
+                               │
+                               ▼
+                     ┌──────────────────────────────────────────┐
+                     │         Return to Idle / Waiting          │
+                     └──────────────────────────────────────────┘
+```
+
+---
+
+# **STATE DESCRIPTIONS**
+
+### **Idle / Waiting**
+The engine is ready to evaluate new events.
+
+### **Event Intake**
+The engine receives an event from a Virtual Software Agent and prepares it for evaluation.
+
+### **Severity Assessment**
+The engine determines how serious the event is using rules, models, and scoring.
+
+### **Routine Logging**
+Low‑severity events are logged and turned into routine insights.
+
+### **Alert Generation**
+Medium/high‑severity events trigger alert creation.
+
+### **Action Recommendation**
+The engine determines the best possible actions to take.
+
+### **Escalation Decision**
+The engine decides whether a supervisor must be involved.
+
+### **Forward Alert**
+If escalation is required, the alert is routed to the supervisory layer.
+
+### **Await Supervisory Feedback**
+The engine waits for approval or modification of the recommended actions.
+
+### **Apply Supervisor‑Approved Actions**
+The engine executes or forwards the approved plan.
+
+### **Execute Local Automated Action**
+If escalation is not required, the engine handles the response autonomously.
+
+### **Return to Idle**
+The engine resets and waits for the next event.
+
+---
+
+# **What This Diagram Captures**
+
+- The **full behavioral lifecycle** of the Decision & Action Engine  
+- How it evaluates events, determines severity, and selects actions  
+- How it decides whether to escalate  
+- How it interacts with supervisory agents  
+- How it supports both **autonomous** and **supervised** responses  
+- A complete model suitable for architecture docs or UML tools  
+
+---
