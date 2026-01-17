@@ -1,0 +1,137 @@
+
+---
+
+# **UML STATE MACHINE DIAGRAM (Text‑Based)**  
+**Entity Modeled:** *Virtual Software Agent (VSA)*
+
+```
+                           ┌──────────────────┐
+                           │      Initial     │
+                           └─────────┬────────┘
+                                     │
+                                     ▼
+                         ┌────────────────────────┐
+                         │     Idle / Waiting     │
+                         └─────────┬──────────────┘
+                                   │
+                     [New data arrives from MU]
+                                   │
+                                   ▼
+                     ┌────────────────────────────┐
+                     │     Data Acquisition        │
+                     └─────────┬──────────────────┘
+                               │
+                     [Data validated & loaded]
+                               │
+                               ▼
+                 ┌──────────────────────────────────┐
+                 │         Analyzing Data           │
+                 └─────────┬────────────────────────┘
+                           │
+        ┌──────────────────┼──────────────────────────────┐
+        │                  │                              │
+        ▼                  ▼                              ▼
+┌────────────────┐  ┌────────────────────┐     ┌────────────────────┐
+│ Rule Evaluation │  │ Statistical Models │     │ Anomaly Detection  │
+└───────┬────────┘  └──────────┬─────────┘     └──────────┬─────────┘
+        │                       │                          │
+        └──────────────┬────────┴──────────────┬──────────┘
+                       ▼                       ▼
+             ┌──────────────────┐     ┌──────────────────────┐
+             │ Normal Condition │     │ Anomaly Identified   │
+             └─────────┬────────┘     └──────────┬──────────┘
+                       │                         │
+                       │                         │
+                       ▼                         ▼
+     ┌──────────────────────────┐     ┌──────────────────────────┐
+     │ Generate Routine Report  │     │  Generate Alert Report    │
+     └─────────┬────────────────┘     └──────────┬───────────────┘
+               │                                   │
+               ▼                                   ▼
+     ┌──────────────────────────┐     ┌──────────────────────────┐
+     │   Send to Reporting      │     │   Escalate to Supervisor  │
+     │        Layer             │     │   (via Reporting Layer)   │
+     └─────────┬────────────────┘     └──────────┬───────────────┘
+               │                                   │
+               ▼                                   ▼
+     ┌──────────────────────────┐     ┌──────────────────────────┐
+     │   Await Feedback /       │     │ Await Supervisory Review │
+     │   Rule Updates           │     └──────────┬───────────────┘
+     └─────────┬────────────────┘                │
+               │                        [Supervisor validates]
+               │                                   │
+               ▼                                   ▼
+     ┌──────────────────────────┐     ┌──────────────────────────┐
+     │   Apply Local Updates    │     │ Update Knowledge Base     │
+     │ (thresholds, rules, etc) │     │ (lessons learned applied) │
+     └─────────┬────────────────┘     └──────────┬───────────────┘
+               │                                   │
+               └──────────────────────┬────────────┘
+                                      ▼
+                         ┌────────────────────────┐
+                         │ Return to Idle/Waiting │
+                         └────────────────────────┘
+```
+
+---
+
+# **State Descriptions**
+
+### **Idle / Waiting**
+The VSA is ready but not currently processing data.
+
+### **Data Acquisition**
+The agent receives new data from its Monitoring Unit and prepares it for analysis.
+
+### **Analyzing Data**
+The agent evaluates the data using:
+- Rule‑based logic  
+- Statistical models  
+- Anomaly detection algorithms  
+
+### **Normal Condition**
+No issues detected; the agent prepares a routine report.
+
+### **Anomaly Identified**
+The agent detects abnormal behavior, threshold breaches, or unexpected patterns.
+
+### **Generate Routine Report**
+A standard status update is created.
+
+### **Generate Alert Report**
+A structured alert is created with severity and recommended actions.
+
+### **Send to Reporting Layer**
+Reports are forwarded to the reporting and escalation subsystem.
+
+### **Escalate to Supervisor**
+Alerts are escalated to supervisory agents or human operators.
+
+### **Await Feedback / Rule Updates**
+The agent pauses for supervisory input or system‑wide updates.
+
+### **Apply Local Updates / Update Knowledge Base**
+The agent incorporates:
+- New rules  
+- Updated thresholds  
+- Lessons learned  
+- Improved models  
+
+### **Return to Idle**
+The cycle resets.
+
+---
+
+# **What This Diagram Captures**
+
+- The **full behavioral lifecycle** of a Virtual Software Agent  
+- How it transitions between monitoring, analysis, reporting, and learning  
+- How anomalies trigger escalation  
+- How supervisory feedback loops improve the agent over time  
+- A complete representation suitable for:
+  - Architecture documents  
+  - Patent filings  
+  - System design reviews  
+  - UML modeling tools  
+
+---
