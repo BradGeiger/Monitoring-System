@@ -1,0 +1,149 @@
+
+---
+
+# **UML COMPONENT DIAGRAM (Text‑Based)**
+
+```
++---------------------------------------------------------------+
+|                   Virtual Monitoring Center                   |
+|---------------------------------------------------------------|
+|  Interfaces:                                                  |
+|    + registerAgent()                                          |
+|    + assignMonitoringUnit()                                   |
+|    + routeData()                                              |
+|                                                               |
+|  Components:                                                  |
+|    - Data Ingestion Layer                                     |
+|    - Monitoring Unit Manager                                  |
+|    - Agent Workstation Manager                                |
+|    - Organizational Hierarchy Manager                         |
++---------------------------+-----------------------------------+
+                            |
+                            | uses
+                            v
++---------------------------------------------------------------+
+|                     Data Ingestion Layer                      |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + captureData()                                             |
+|   + normalizeData()                                           |
+|   + validateData()                                            |
+|   + routeToMonitoringUnit()                                   |
++---------------------------+-----------------------------------+
+                            |
+                            | sends data to
+                            v
++---------------------------------------------------------------+
+|                      Monitoring Unit (MU)                     |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + storeData()                                               |
+|   + provideContext()                                          |
+|   + updateThresholds()                                        |
+|                                                               |
+| Subcomponents:                                                |
+|   - Data History Store                                        |
+|   - Context Processor                                         |
++---------------------------+-----------------------------------+
+                            |
+                            | provides feed to
+                            v
++---------------------------------------------------------------+
+|                   Virtual Workstation Component               |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + displayData()                                             |
+|   + loadTools()                                               |
+|   + sendMessage()                                             |
+|                                                               |
+| Subcomponents:                                                |
+|   - Dashboard Renderer                                        |
+|   - Toolset Loader                                            |
++---------------------------+-----------------------------------+
+                            |
+                            | used by
+                            v
++---------------------------------------------------------------+
+|                   Virtual Software Agent (VSA)                |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + analyzeData()                                             |
+|   + detectAnomaly()                                           |
+|   + generateReport()                                          |
+|   + escalate()                                                |
+|   + updateRules()                                             |
+|                                                               |
+| Subcomponents:                                                |
+|   - Knowledge Base                                            |
+|   - Analytics Engine                                          |
+|   - Anomaly Detector                                          |
++---------------------------+-----------------------------------+
+                            |
+                            | sends events to
+                            v
++---------------------------------------------------------------+
+|                   Decision & Action Engine                    |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + evaluateEvent()                                           |
+|   + generateAlert()                                           |
+|   + recommendAction()                                         |
+|                                                               |
+| Subcomponents:                                                |
+|   - Rule Engine                                               |
+|   - Severity Model                                            |
++---------------------------+-----------------------------------+
+                            |
+                            | forwards to
+                            v
++---------------------------------------------------------------+
+|                 Reporting & Escalation Component              |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + packageReport()                                           |
+|   + routeToSupervisor()                                       |
+|   + escalate()                                                |
+|                                                               |
+| Subcomponents:                                                |
+|   - Routing Logic                                             |
+|   - Alert Formatter                                           |
++---------------------------+-----------------------------------+
+                            |
+                            | notifies
+                            v
++---------------------------------------------------------------+
+|                       Supervisory Agent                       |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + validateReport()                                          |
+|   + provideFeedback()                                         |
+|   + approveAction()                                           |
+|   + submitInsight()                                           |
++---------------------------+-----------------------------------+
+                            |
+                            | updates
+                            v
++---------------------------------------------------------------+
+|                 Lessons-Learned Repository                    |
+|---------------------------------------------------------------|
+| Interfaces:                                                   |
+|   + storeInsight()                                            |
+|   + updateRules()                                             |
+|   + distributeUpdates()                                       |
+|                                                               |
+| Subcomponents:                                                |
+|   - Insight Store                                             |
+|   - Rule Update Manager                                       |
++---------------------------------------------------------------+
+```
+
+---
+
+# **What This Component Diagram Shows**
+
+- The system is composed of **modular components**, each with clear responsibilities.  
+- Data flows from **Data Ingestion → Monitoring Unit → Workstation → VSA → Decision Engine → Reporting → Supervisory Agent → Lessons Learned**.  
+- Each component exposes **interfaces** that define how other components interact with it.  
+- The architecture supports **scalability, modularity, and continuous improvement**.
+
+---
